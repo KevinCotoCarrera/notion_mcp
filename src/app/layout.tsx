@@ -1,6 +1,5 @@
 // Import Metadata from "next" to fix the error.
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./skeleton.css";
 import { NextIntlClientProvider } from "next-intl";
@@ -8,16 +7,6 @@ import { getUserLocale } from "@i18n/locale";
 import { generateMetadata as generateSEOMetadata } from "@lib/seo/metadata";
 import enMessages from "../../messages/en.json";
 import thMessages from "../../messages/th.json";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = generateSEOMetadata({
   title: "AI-Powered Restaurant Feedback Platform | Bangkok Restaurant Reviews",
@@ -50,9 +39,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-black`}
-      >
+      <body className="font-sans antialiased text-black">
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
