@@ -1,0 +1,182 @@
+{
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "about": "About",
+    "whyus": "Why Us?",
+    "login": "Log in",
+    "lockDiscount": "Lock Discount"
+  },
+  "LocaleSwitcher": {
+    "label": "Select Language",
+    "en": "English",
+    "th": "ไทย"
+  },
+
+  "auth": {
+    "createAccount": "Create Your Account",
+    "register": "Register",
+    "registrationSuccess": "Registration successful! Redirecting...",
+    "login": "Login",
+    "invalidCredentials": "Invalid credentials",
+    "registrationFailed": "Registration failed",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "registerSubtitle": "Create your account to get started.",
+    "loginSubtitle": "Sign in to your account.",
+    "showPassword": "Show",
+    "hidePassword": "Hide",
+    "loginInYourAccount": "Do you have an account?"
+  },
+
+  "date": {
+    "relative": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "tomorrow": "Tomorrow",
+      "this_sunday": "This Sunday",
+      "this_monday": "This Monday",
+      "this_tuesday": "This Tuesday",
+      "this_wednesday": "This Wednesday",
+      "this_thursday": "This Thursday",
+      "this_friday": "This Friday",
+      "this_saturday": "This Saturday",
+      "next_sunday": "Next Sunday",
+      "next_monday": "Next Monday",
+      "next_tuesday": "Next Tuesday",
+      "next_wednesday": "Next Wednesday",
+      "next_thursday": "Next Thursday",
+      "next_friday": "Next Friday",
+      "next_saturday": "Next Saturday",
+      "last_sunday": "Last Sunday",
+      "last_monday": "Last Monday",
+      "last_tuesday": "Last Tuesday",
+      "last_wednesday": "Last Wednesday",
+      "last_thursday": "Last Thursday",
+      "last_friday": "Last Friday",
+      "last_saturday": "Last Saturday",
+      "weeks_ago": "{weeks} weeks ago",
+      "in_weeks": "In {weeks} weeks",
+      "date": "{date}"
+    }
+  },
+  "settings": {
+    "profile": {
+      "title": "Profile Settings",
+      "subtitle": "Manage your personal information and business details",
+      "personalInfo": {
+        "title": "Personal Information",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email Address",
+        "username": "Username",
+        "usernameHelper": "Your username cannot be changed",
+        "memberSince": "Member Since"
+      },
+      "businessInfo": {
+        "title": "Business Information",
+        "name": "Business Name",
+        "address": "Business Address",
+        "description": "Description",
+        "category": "Category",
+        "selectCategory": "Select a category",
+        "language": "AI Feedback Language",
+        "languageHelper": "Language used for AI-generated feedback summaries",
+        "createdAt": "Created"
+      },
+      "languages": {
+        "en": "English",
+        "th": "Thai"
+      },
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "cancel": "Cancel",
+      "success": "Profile updated successfully!",
+      "error": "Failed to update profile. Please try again.",
+      "unsavedChanges": "You have unsaved changes",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "businessNameRequired": "Business name is required"
+    },
+    "account": {
+      "title": "Account Settings",
+      "subtitle": "Manage your account preferences and subscription plan",
+      "preferences": {
+        "title": "Preferences",
+        "language": "Preferred Language",
+        "languageHelper": "Choose your preferred language for the interface"
+      },
+      "subscription": {
+        "title": "Subscription Plan",
+        "currentPlan": "Current Plan",
+        "planName": "Plan Name",
+        "status": "Status",
+        "active": "Active",
+        "inactive": "Inactive",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "features": "Plan Features",
+        "upgrade": "Upgrade Plan",
+        "manage": "Manage Subscription"
+      },
+      "dangerZone": {
+        "title": "Danger Zone",
+        "deleteAccount": "Delete Account",
+        "deleteDescription": "Permanently delete your account and all associated data",
+        "deleteButton": "Delete Account",
+        "deleteWarning": "This action cannot be undone",
+        "warning": "This action cannot be undone",
+        "consequence1": "All your feedback and reviews will be permanently deleted",
+        "consequence2": "Your business information and QR codes will be removed",
+        "consequence3": "You will lose access to all subscription features"
+      },
+      "languages": {
+        "en": "English",
+        "th": "Thai"
+      },
+      "plans": {
+        "free": "Free",
+        "premium": "Premium",
+        "enterprise": "Enterprise"
+      },
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "cancel": "Cancel",
+      "success": "Settings saved successfully!",
+      "error": "Failed to save settings. Please try again.",
+      "unsavedChanges": "You have unsaved changes"
+    },
+    "notifications": {
+      "title": "Notification Settings",
+      "subtitle": "Configure how and when you want to receive feedback summaries",
+      "email": {
+        "title": "Email Notifications",
+        "label": "Email Address",
+        "placeholder": "your.email@example.com",
+        "helper": "We'll send feedback summaries to this email address"
+      },
+      "line": {
+        "title": "Line Notifications",
+        "label": "Line ID",
+        "placeholder": "@yourlineid",
+        "helper": "Optionally receive summaries via Line messenger",
+        "optional": "Optional"
+      },
+      "plan": {
+        "title": "Your Plan",
+        "frequencies": "Available frequencies:"
+      },
+     
+      "save": "Save Settings",
+      "saving": "Saving...",
+      "success": "Settings saved successfully!",
+      "error": "Failed to save settings. Please try again.",
+      "unsaved": "Unsaved changes",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address"
+    }
+  }
+}
