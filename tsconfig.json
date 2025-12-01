@@ -28,7 +28,7 @@
       "@public/*": ["./public/*"],
       "@assets/*": ["./src/assets/*"],
       "@constants/*": ["./src/constants/*"],
-      "@types/*": ["./src/types/*"],
+      "@app-types/*": ["./src/app-types/*"],
       "@utils/*": ["./src/utils/*"],
       "@context/*": ["./src/context/*"],
       "@pages/*": ["./src/pages/*"],
