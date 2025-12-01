@@ -140,10 +140,13 @@ function SimpleBarChart({
   );
 }
 
+// Constants
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
+
 // Sprint header component
 function SprintHeader({ sprint }: { sprint: Sprint }) {
   const daysRemaining = Math.ceil(
-    (new Date(sprint.endDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+    (new Date(sprint.endDate).getTime() - Date.now()) / MS_PER_DAY
   );
 
   return (

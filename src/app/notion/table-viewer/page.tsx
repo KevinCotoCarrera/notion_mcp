@@ -126,8 +126,7 @@ const SAMPLE_TASKS: Task[] = [
 
 export default function TableViewerPage() {
   const [loading, setLoading] = useState(true);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [error, _setError] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
   const [selectedDatabase, setSelectedDatabase] = useState<string | null>(null);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [databases] = useState(SAMPLE_DATABASES);

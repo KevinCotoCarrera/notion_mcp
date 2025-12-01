@@ -154,8 +154,7 @@ function calculateMetrics(tasks: Task[]): SprintMetrics {
 export default function SprintDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isAuthenticated, _setIsAuthenticated] = useState(false);
+  const [isAuthenticated] = useState(false);
   const [tasks, setTasks] = useState<Task[]>(SAMPLE_TASKS);
   const [sprint] = useState<Sprint>(SAMPLE_SPRINT);
   const [useSampleData, setUseSampleData] = useState(true);

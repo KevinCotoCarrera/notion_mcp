@@ -4,14 +4,14 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { exchangeCodeForToken } from "@lib/services/notion/auth";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const code = searchParams.get("code");
   const error = searchParams.get("error");
-  // state parameter received but not validated in this simplified example
-  // In production, validate against stored state from session
+  const state = searchParams.get("state");
   
   // Handle error from Notion
   if (error) {
@@ -19,6 +19,19 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(
       new URL(
         `/notion/auth-error?error=${encodeURIComponent(errorDescription)}`,
+        request.url
+      )
+    );
+  }
+  
+  // Validate state parameter to prevent CSRF attacks
+  const cookieStore = await cookies();
+  const storedState = cookieStore.get("notion_oauth_state")?.value;
+  
+  if (!state || state !== storedState) {
+    return NextResponse.redirect(
+      new URL(
+        `/notion/auth-error?error=${encodeURIComponent("Invalid state parameter - possible CSRF attack")}`,
         request.url
       )
     );
@@ -50,6 +63,9 @@ export async function GET(request: NextRequest) {
   const response = NextResponse.redirect(
     new URL("/notion/sprint-dashboard", request.url)
   );
+  
+  // Clear the OAuth state cookie
+  response.cookies.delete("notion_oauth_state");
   
   // Set the access token in a secure HTTP-only cookie
   response.cookies.set("notion_access_token", result.data.access_token, {

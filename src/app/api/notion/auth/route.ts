@@ -13,11 +13,22 @@ export async function GET() {
     const state = randomBytes(16).toString("hex");
     const authUrl = getAuthorizationUrl(state);
     
-    return NextResponse.json({
+    // Create response with the auth URL
+    const response = NextResponse.json({
       success: true,
       authUrl,
-      state,
     });
+    
+    // Store state in a secure HTTP-only cookie for CSRF validation
+    response.cookies.set("notion_oauth_state", state, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 10, // 10 minutes
+      path: "/",
+    });
+    
+    return response;
   } catch (error) {
     console.error("Failed to generate auth URL:", error);
     return NextResponse.json(

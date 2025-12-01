@@ -115,11 +115,18 @@ function SuggestionCard({
                 Object.keys(suggestion.suggestedValues).length > 0 && (
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase">
-                      Suggested Values
+                      Suggested Changes
                     </p>
-                    <pre className="text-xs bg-gray-50 p-2 rounded mt-1 overflow-auto">
-                      {JSON.stringify(suggestion.suggestedValues, null, 2)}
-                    </pre>
+                    <div className="mt-1 space-y-1">
+                      {Object.entries(suggestion.suggestedValues).map(([key, value]) => (
+                        <div key={key} className="text-xs bg-gray-50 p-2 rounded flex justify-between">
+                          <span className="text-gray-500 capitalize">{key.replace(/_/g, ' ')}:</span>
+                          <span className="text-gray-700 font-medium">
+                            {typeof value === 'object' ? JSON.stringify(value) : String(value)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               {suggestion.relatedTaskIds &&

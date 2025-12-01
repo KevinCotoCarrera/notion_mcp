@@ -1,11 +1,9 @@
 "use client";
-import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@components/ui/shadcn/button";
 
 export default function Home() {
-  useTranslations("home");
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
