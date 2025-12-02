@@ -43,11 +43,11 @@ async function notionRequest<T>(
         "Content-Type": "application/json",
       },
     };
-    
+
     if (options.body) {
       fetchOptions.body = JSON.stringify(options.body);
     }
-    
+
     const response = await fetch(`${NOTION_API_BASE}${endpoint}`, fetchOptions);
 
     if (!response.ok) {
@@ -65,8 +65,7 @@ async function notionRequest<T>(
   } catch (error) {
     return {
       success: false,
-      error:
-        error instanceof Error ? error.message : "Unknown error occurred",
+      error: error instanceof Error ? error.message : "Unknown error occurred",
     };
   }
 }
@@ -83,6 +82,31 @@ export async function listDatabases(
       accessToken,
     }
   );
+
+  if (!response.success) {
+    return {
+      success: false,
+      error: response.error,
+    };
+  }
+
+  return {
+    success: true,
+    data: response.data?.results || [],
+  };
+}
+
+export async function searchAll(
+  accessToken?: string,
+  query?: string
+): Promise<NotionAPIResponse<(NotionDatabase | NotionPage)[]>> {
+  const response = await notionRequest<{
+    results: (NotionDatabase | NotionPage)[];
+  }>("/search", {
+    method: "POST",
+    body: query ? { query } : {},
+    accessToken,
+  });
 
   if (!response.success) {
     return {
@@ -156,17 +180,46 @@ export async function getPage(
   return notionRequest<NotionPage>(`/pages/${pageId}`, { accessToken });
 }
 
+export async function getPageBlocks(
+  pageId: string,
+  accessToken?: string
+): Promise<NotionAPIResponse<any[]>> {
+  const response = await notionRequest<{ results: any[] }>(
+    `/blocks/${pageId}/children`,
+    { accessToken }
+  );
+
+  if (!response.success) {
+    return {
+      success: false,
+      error: response.error,
+    };
+  }
+
+  return {
+    success: true,
+    data: response.data?.results || [],
+  };
+}
+
 export async function createPage(
   databaseId: string,
   properties: Record<string, unknown>,
-  accessToken?: string
+  accessToken?: string,
+  children?: Array<Record<string, unknown>>
 ): Promise<NotionAPIResponse<NotionPage>> {
+  const body: any = {
+    parent: { database_id: databaseId },
+    properties,
+  };
+
+  if (children && children.length > 0) {
+    body.children = children;
+  }
+
   return notionRequest<NotionPage>("/pages", {
     method: "POST",
-    body: {
-      parent: { database_id: databaseId },
-      properties,
-    },
+    body,
     accessToken,
   });
 }

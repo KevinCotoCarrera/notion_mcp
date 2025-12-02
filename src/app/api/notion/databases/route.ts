@@ -10,6 +10,7 @@ import {
   listDatabases,
   queryDatabase,
   getDatabase,
+  searchAll,
 } from "@lib/services/notion/client";
 
 async function getAccessToken(): Promise<string | null> {
@@ -19,25 +20,33 @@ async function getAccessToken(): Promise<string | null> {
 
 export async function GET(request: NextRequest) {
   const accessToken = await getAccessToken();
-  
+
   if (!accessToken) {
     return NextResponse.json(
       { success: false, error: "Not authenticated with Notion" },
       { status: 401 }
     );
   }
-  
+
   const searchParams = request.nextUrl.searchParams;
   const databaseId = searchParams.get("id");
-  
+  const searchQuery = searchParams.get("search");
+  const includeAll = searchParams.get("all") === "true";
+
   try {
     if (databaseId) {
       // Get specific database
       const result = await getDatabase(databaseId, accessToken);
       return NextResponse.json(result);
     }
-    
-    // List all databases
+
+    if (includeAll || searchQuery !== null) {
+      // Search all content (pages and databases)
+      const result = await searchAll(accessToken, searchQuery || undefined);
+      return NextResponse.json(result);
+    }
+
+    // List only databases (default behavior)
     const result = await listDatabases(accessToken);
     return NextResponse.json(result);
   } catch (error) {
@@ -51,31 +60,31 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const accessToken = await getAccessToken();
-  
+
   if (!accessToken) {
     return NextResponse.json(
       { success: false, error: "Not authenticated with Notion" },
       { status: 401 }
     );
   }
-  
+
   try {
     const body = await request.json();
     const { databaseId, filter, sorts, startCursor, pageSize } = body;
-    
+
     if (!databaseId) {
       return NextResponse.json(
         { success: false, error: "Database ID is required" },
         { status: 400 }
       );
     }
-    
+
     const result = await queryDatabase(
       databaseId,
       { filter, sorts, startCursor, pageSize },
       accessToken
     );
-    
+
     return NextResponse.json(result);
   } catch (error) {
     console.error("Database query error:", error);
